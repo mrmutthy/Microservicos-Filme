@@ -1,35 +1,27 @@
 package br.edu.utfpr.api_filme.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-
-
 public class Filme {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "livro-seq")
-    @SequenceGenerator(name = "livro-seq", sequenceName = "livro_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "filme_seq")
+    @SequenceGenerator(name = "filme_seq", sequenceName = "filme_seq", allocationSize = 1)
 
     private Long id;
-    private String Titulo;
-    private String Autor;
+    private String titulo;
+    private String autor;
     private String genero;
-    private String DataLancamento;
-    private String Sinopse;
+    private String dataLancamento;
+    private String sinopse;
 
-    public Filme(Long id, String Titulo, String Autor, String genero, String DataLancamento, String Sinopse) {
+    public Filme(Long id, String titulo, String autor, String genero, String dataLancamento, String sinopse) {
         this.id = id;
-        this.Titulo = Titulo;
-        this.Autor = Autor;
+        this.titulo = titulo;
+        this.autor = autor;
         this.genero = genero;
-        this.DataLancamento = DataLancamento;
-        this.Sinopse = Sinopse;
+        this.dataLancamento = dataLancamento;
+        this.sinopse = sinopse;
     }
 
     public Filme() {
@@ -39,55 +31,49 @@ public class Filme {
     //Getters
 
 
-    public Long getId() {
-        return id;
-    }
+
 
     public String getTitulo() {
-        return Titulo;
+        return titulo;
     }
 
     public String getAutor() {
-        return Autor;
+        return autor;
     }
 
-    public String getgenero() {
+    public String getGenero() {
         return genero;
     }
 
     public String getDataLancamento() {
-        return DataLancamento;
+        return dataLancamento;
     }
 
     public String getSinopse() {
-        return Sinopse;
+        return sinopse;
     }
 
     // Setters
 
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public void setTitulo(String Titulo) {
-        Titulo = Titulo;
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 
-    public void setAutor(String Autor) {
-        Autor = Autor;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
-    public void setgenero(String genero) {
-        genero = genero;
+    public void setDataLancamento(String dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
-    public void setDataLancamento(String DataLancamento) {
-        DataLancamento = DataLancamento;
-    }
-
-    public void setSinopse(String Sinopse) {
-        Sinopse = Sinopse;
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
 
 }

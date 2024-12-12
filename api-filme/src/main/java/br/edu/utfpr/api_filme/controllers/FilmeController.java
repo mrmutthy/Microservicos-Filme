@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/filmes")
@@ -48,10 +46,12 @@ public class FilmeController {
     @Transactional
     @PostMapping
     public ResponseEntity<String> addOne(@RequestBody Filme filme) {
-        if (filme.getgenero() == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Descrição ou Preço inválidos");
+        if (filme.getTitulo() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Filme invalido");
         } else {
+
             this.repository.save(filme);
+
             return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
         }
    }
@@ -64,10 +64,9 @@ public class FilmeController {
         Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
 
         if (filmeDB != null){
-            filmeDB.setId(filme.getId());
             filmeDB.setTitulo(filme.getTitulo());
             filmeDB.setAutor(filme.getAutor());
-            filmeDB.setgenero(filme.getgenero());
+            filmeDB.setGenero(filme.getGenero());
             filmeDB.setDataLancamento(filme.getDataLancamento());
             filmeDB.setSinopse(filme.getSinopse());
 
