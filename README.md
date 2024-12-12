@@ -1,27 +1,49 @@
-# Microservicos-Filme
+# Microserviços-Filme
 
-Esse projeto tem como objetivo criar microserviços para o trabalho de TE.
+Este projeto tem como objetivo criar microsserviços para um trabalho de TE (Trabalho de Engenharia).
 
-Ele conta com 5 CRUD'S sendo:
-Api-Filmes
-Api-Avaliacao
-Api-Recomendacao
-Api-Validacao
-Api-Usuario
+Ele conta com 5 CRUDs, sendo eles:
 
-Para rodar, voce tem que ter na sua maquina uma versão 17 ou + do Java.
+- Api-Filmes
+- Api-Avaliacao
+- Api-Recomendacao
+- Api-Validacao
+- Api-Usuario
 
-Funcionalidades:
-Api-Filmes: Buscar todos os filmes
-            Buscar filmes pelo genero
-            Adicionar filmes
-            Alterar filmes
-            Deletar filmes
+**Para rodar o projeto, você precisa ter em sua máquina uma versão 17 ou superior do Java.**
 
-Api-Avaliacao: Buscar todas as avaliações
-               Buscar as avaliações de um filmes especifico
-               Ver a media de nota de um filme Avaliado
-               Fazer uma avaliação
-               Editar uma avaliação
-               Excluir uma avaliaçõ
-               
+### Funcionalidades:
+
+**Api-Filmes:**
+
+- Buscar todos os filmes
+- Buscar filmes por gênero
+- Adicionar filmes
+- Alterar filmes
+- Deletar filmes
+
+**Api-Avaliacao:**
+
+- Buscar todas as avaliações
+- Buscar as avaliações de um filme específico
+- Ver a média de notas de um filme avaliado
+- Fazer uma avaliação
+- Editar uma avaliação
+- Excluir uma avaliação
+
+**Api-Recomendacao:**
+
+- **Funcionalidades a serem implementadas...**
+
+**Api-Validacao:**
+
+- **Funcionalidades a serem implementadas...**
+
+**Api-Usuario:**
+
+- **Funcionalidades a serem implementadas...**
+
+
+## Observações:
+
+- Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
