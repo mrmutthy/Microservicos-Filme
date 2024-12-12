@@ -1,6 +1,6 @@
 # Microserviços-Filme
 
-Este projeto tem como objetivo criar microsserviços para um trabalho de TE (Trabalho de Engenharia).
+Este projeto tem como objetivo criar microsserviços para um trabalho de TE (Topicos Especiais).
 
 Ele conta com 5 CRUDs, sendo eles:
 
@@ -9,6 +9,8 @@ Ele conta com 5 CRUDs, sendo eles:
 - Api-Recomendacao
 - Api-Validacao
 - Api-Usuario
+
+Acessados por um gateway e de persistencia em um banco de dados Postgres.
 
 **Para rodar o projeto, você precisa ter em sua máquina uma versão 17 ou superior do Java.**
 
@@ -47,3 +49,5 @@ Ele conta com 5 CRUDs, sendo eles:
 ## Observações:
 
 - Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
+
+  <img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/imagem.jpeg" alt="Logo do projeto">
