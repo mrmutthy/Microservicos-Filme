@@ -26,14 +26,13 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable(name = "id") Long id) {
-        // Filme filmeEncontrado = this.repository.findById(idTitulo).orElse(null);
+		Usuario usuarioEncontrado = this.repository.findById(id).orElse(null);
 
-        // if (filmeEncontrado == null)
-        //     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        // else
-        //     return ResponseEntity.status(HttpStatus.OK).body(filmeEncontrado);
-
-        return ResponseEntity.ok().body(new Usuario());
+		if (usuarioEncontrado == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		} else {
+			return ResponseEntity.ok().body(usuarioEncontrado);
+		}
     }
 
     @Transactional
