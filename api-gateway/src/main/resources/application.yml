@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: api_gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: avaliacao
+          uri: http://localhost:8081
+          predicates:
+            - Path=/avaliacoes/**
+        - id: filme
+          uri: http://localhost:8082
+          predicates:
+            - Path=/filmes/**
+        - id: usuario
+          uri: http://localhost:8083
+          predicates:
+            - Path=/usuarios/**
