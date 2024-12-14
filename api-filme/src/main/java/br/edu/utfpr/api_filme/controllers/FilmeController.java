@@ -3,7 +3,6 @@ package br.edu.utfpr.api_filme.controllers;
 import br.edu.utfpr.api_filme.dto.FilmeDTO;
 import br.edu.utfpr.api_filme.model.Filme;
 import br.edu.utfpr.api_filme.repositories.FilmeRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +31,15 @@ public class FilmeController {
 
     //pegar um
     @GetMapping("/{id}")
-    public ResponseEntity<Filme> getById(@PathVariable(name = "id") Long idTitulo) {
-        Filme filmeEncontrado = this.repository.findById(idTitulo).orElse(null);
+    public ResponseEntity<FilmeDTO> getById(@PathVariable(name = "id") Long id) {
+        Filme filme = this.repository.findById(id).orElse(null);
 
-        if (filmeEncontrado == null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        else
-            return ResponseEntity.status(HttpStatus.OK).body(filmeEncontrado);
+        if (filme == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		} else {
+			FilmeDTO filmeDTO = new FilmeDTO(filme.getId(), filme.getTitulo(), filme.getAutor(), filme.getGenero(), filme.getDataLancamento(), filme.getSinopse());
+			return ResponseEntity.status(HttpStatus.OK).body(filmeDTO);
+		}
     }
 
     //adicionar filme
@@ -67,17 +68,18 @@ public class FilmeController {
 
     //Alterar um filme
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long idTitulo, @RequestBody Filme filme) {
-        Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
+    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody FilmeDTO filmeDTO) {
+        Filme filmeDB = this.repository.findById(id).orElse(null);
 
-        if (filmeDB != null){
-            filmeDB.setTitulo(filme.getTitulo());
-            filmeDB.setAutor(filme.getAutor());
-            filmeDB.setGenero(filme.getGenero());
-            filmeDB.setDataLancamento(filme.getDataLancamento());
-            filmeDB.setSinopse(filme.getSinopse());
+        if (filmeDB != null) {
+            filmeDB.setTitulo(filmeDTO.titulo());
+            filmeDB.setAutor(filmeDTO.autor());
+            filmeDB.setGenero(filmeDTO.genero());
+            filmeDB.setDataLancamento(filmeDTO.lancamento());
+            filmeDB.setSinopse(filmeDTO.sinopse());
 
             this.repository.save(filmeDB);
+
             return ResponseEntity.status(HttpStatus.OK).body("Filme alterado com sucesso!");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
@@ -85,11 +87,12 @@ public class FilmeController {
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long idTitulo) {
-        Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
+    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
+        Filme filme = this.repository.findById(id).orElse(null);
 
-        if (filmeDB != null){
-            this.repository.delete(filmeDB);
+        if (filme != null){
+            this.repository.delete(filme);
+
             return ResponseEntity.status(HttpStatus.OK).body("Filme deletado com sucesso!");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
@@ -97,12 +100,16 @@ public class FilmeController {
     }
 
     @GetMapping("/genero/{genero}")
-    public ResponseEntity<List<Filme>> getByGenero(@PathVariable("genero") String genero){
+    public ResponseEntity<List<FilmeDTO>> getByGenero(@PathVariable("genero") String genero){
         List<Filme> lista = this.repository.findByGenero(genero);
-        if (lista.isEmpty()){
+
+		if (lista.isEmpty()){
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return ResponseEntity.ok(lista);
+
+		List<FilmeDTO> listaDTO = lista.stream().map(filme -> new FilmeDTO(filme.getId(), filme.getTitulo(), filme.getAutor(), filme.getGenero(), filme.getDataLancamento(), filme.getSinopse())).toList();
+
+		return ResponseEntity.ok(listaDTO);
     }
 
 }
