@@ -4,6 +4,8 @@
 /api-gateway/.idea/
 /api-usuario/.idea/
 
+/api-avaliacao/target/
+/api-filme/target/
 /api-gateway/target/
 /api-usuario/target/
 
