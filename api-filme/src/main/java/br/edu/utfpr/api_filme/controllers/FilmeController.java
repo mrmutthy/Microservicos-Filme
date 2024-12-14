@@ -1,5 +1,6 @@
 package br.edu.utfpr.api_filme.controllers;
 
+import br.edu.utfpr.api_filme.dto.FilmeDTO;
 import br.edu.utfpr.api_filme.model.Filme;
 import br.edu.utfpr.api_filme.repositories.FilmeRepository;
 import jakarta.transaction.Transactional;
@@ -41,17 +42,27 @@ public class FilmeController {
     }
 
     //adicionar filme
-    @Transactional
     @PostMapping
-    public ResponseEntity<String> addOne(@RequestBody Filme filme) {
-        if (filme.getTitulo() == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Filme invalido");
-        } else {
+    public ResponseEntity<String> addOne(@RequestBody FilmeDTO filmeDTO) {
+		if (filmeDTO.titulo() == null || filmeDTO.titulo().isEmpty()
+			|| filmeDTO.genero() == null || filmeDTO.genero().isEmpty()
+			|| filmeDTO.autor() == null || filmeDTO.autor().isEmpty()
+			|| filmeDTO.sinopse() == null || filmeDTO.sinopse().isEmpty()
+			|| filmeDTO.lancamento() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Filme invalido");
+		}
 
-            this.repository.save(filme);
+		Filme filme = new Filme();
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
-        }
+		filme.setTitulo(filmeDTO.titulo());
+		filme.setSinopse(filmeDTO.sinopse());
+		filme.setGenero(filmeDTO.genero());
+		filme.setAutor(filmeDTO.autor());
+		filme.setDataLancamento(filmeDTO.lancamento());
+
+		this.repository.save(filme);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
    }
 
     //Alterar um filme
