@@ -3,6 +3,7 @@ package utfpr.edu.br.api_avaliacao.repositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 import utfpr.edu.br.api_avaliacao.dtos.AvaliacaoDTO;
 import utfpr.edu.br.api_avaliacao.dtos.MediaDTO;
 import utfpr.edu.br.api_avaliacao.model.Avaliacao;
@@ -39,19 +40,20 @@ public class AvaliacaoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<String> create(@RequestBody AvaliacaoDTO avaliacaoDTO) {
+	public ResponseEntity<String> create(@Valid @RequestBody AvaliacaoDTO avaliacaoDTO) {
+		if (avaliacaoDTO.nota() < 0 || avaliacaoDTO.nota() > 10) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A Nota deve ser entre 0 e 10");
+		}
+
 		/*
 
         if (avaliacao.getTitulo() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O nome do filme é obrigatorio");
-        } else if (avaliacao.getNota() > 5 || avaliacao.getNota() < 0 ) {
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A Nota deve ser entre 0 e 5");
         }
 
 		*/
 
-		Avaliacao avaliacao = new Avaliacao(avaliacaoDTO.id(), avaliacaoDTO.titulo(), avaliacaoDTO.comentario(), avaliacaoDTO.nota());
+		Avaliacao avaliacao = new Avaliacao(avaliacaoDTO.id(), avaliacaoDTO.titulo(), avaliacaoDTO.comentario(), avaliacaoDTO.nota(), 0L, 0L);
 
 		this.repository.save(avaliacao);
 
@@ -59,7 +61,7 @@ public class AvaliacaoController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody AvaliacaoDTO avaliacaoDTO) {
+	public ResponseEntity<String> update(@PathVariable Long id, @Valid @RequestBody AvaliacaoDTO avaliacaoDTO) {
 		Avaliacao avaliacao = this.repository.findById(id).orElse(null);
 
 		if (avaliacao != null) {
