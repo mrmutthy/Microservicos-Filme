@@ -1,9 +1,10 @@
-package br.edu.utfpr.api_avaliacao.repositories;
+package br.edu.utfpr.api_avaliacao.controller;
 
 import br.edu.utfpr.api_avaliacao.dtos.AvaliacaoDTO;
 import br.edu.utfpr.api_avaliacao.dtos.MediaDTO;
 import br.edu.utfpr.api_avaliacao.model.Avaliacao;
 import br.edu.utfpr.api_avaliacao.repository.AvaliacaoRepository;
+import br.edu.utfpr.api_avaliacao.service.AvaliacaoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,18 +13,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/avaliacao")
+@RequestMapping("/avaliacoes")
 public class AvaliacaoController {
 
 	private AvaliacaoRepository repository;
 
-	public AvaliacaoController(AvaliacaoRepository repository) {
+	AvaliacaoService avaliacaoService;
+
+	public AvaliacaoController(AvaliacaoRepository repository, AvaliacaoService avaliacaoService) {
 		this.repository = repository;
+		this.avaliacaoService = avaliacaoService;
 	}
 
 	@GetMapping
 	public ResponseEntity<List<AvaliacaoDTO>> findAll() {
-		List<AvaliacaoDTO> lista = this.repository.findAll().stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota())).toList();
+		List<AvaliacaoDTO> lista = this.repository.findAll().stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L)).toList();
 
 		return ResponseEntity.ok().body(lista);
 	}
@@ -35,7 +39,7 @@ public class AvaliacaoController {
 		if (avaliacao == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).body(new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota()));
+			return ResponseEntity.status(HttpStatus.OK).body(new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L));
 		}
 	}
 
@@ -98,7 +102,7 @@ public class AvaliacaoController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 
-		return ResponseEntity.ok(lista.stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota())).toList());
+		return ResponseEntity.ok(lista.stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L)).toList());
 	}
 
 	@GetMapping("/media/{titulo}")
