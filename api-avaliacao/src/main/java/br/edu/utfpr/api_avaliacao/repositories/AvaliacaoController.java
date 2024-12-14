@@ -1,13 +1,13 @@
-package utfpr.edu.br.api_avaliacao.repositories;
+package br.edu.utfpr.api_avaliacao.repositories;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import utfpr.edu.br.api_avaliacao.dtos.AvaliacaoDTO;
-import utfpr.edu.br.api_avaliacao.dtos.MediaDTO;
-import utfpr.edu.br.api_avaliacao.model.Avaliacao;
-import utfpr.edu.br.api_avaliacao.repository.AvaliacaoRepository;
+import br.edu.utfpr.api_avaliacao.dtos.AvaliacaoDTO;
+import br.edu.utfpr.api_avaliacao.dtos.MediaDTO;
+import br.edu.utfpr.api_avaliacao.model.Avaliacao;
+import br.edu.utfpr.api_avaliacao.repository.AvaliacaoRepository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package utfpr.edu.br.api_avaliacao.model;
+package br.edu.utfpr.api_avaliacao.model;
 
 import jakarta.persistence.*;
 

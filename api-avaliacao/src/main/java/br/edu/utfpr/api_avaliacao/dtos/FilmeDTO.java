@@ -1,4 +1,4 @@
-package utfpr.edu.br.api_avaliacao.dtos;
+package br.edu.utfpr.api_avaliacao.dtos;
 
 import java.util.Date;
 

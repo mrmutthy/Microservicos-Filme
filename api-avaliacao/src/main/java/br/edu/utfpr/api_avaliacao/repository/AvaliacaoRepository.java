@@ -1,9 +1,9 @@
-package utfpr.edu.br.api_avaliacao.repository;
+package br.edu.utfpr.api_avaliacao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import utfpr.edu.br.api_avaliacao.model.Avaliacao;
+import br.edu.utfpr.api_avaliacao.model.Avaliacao;
 
 import java.util.List;
 
