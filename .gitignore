@@ -1,2 +1,5 @@
 /api-gateway/target/
 /api-usuario/target/
+
+/api-usuario/usuario_db.mv.db
+
