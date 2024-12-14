@@ -1,8 +1,9 @@
 package br.edu.utfpr.api_usuario.controllers;
 
+import br.edu.utfpr.api_usuario.dto.UsuarioDTO;
 import br.edu.utfpr.api_usuario.model.Usuario;
 import br.edu.utfpr.api_usuario.repositories.UsuarioRepository;
-import jakarta.transaction.Transactional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,62 +27,49 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable(name = "id") Long id) {
-		Usuario usuarioEncontrado = this.repository.findById(id).orElse(null);
+		Usuario usuario = this.repository.findById(id).orElse(null);
 
-		if (usuarioEncontrado == null) {
+		if (usuario == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
-			return ResponseEntity.ok().body(usuarioEncontrado);
+			return ResponseEntity.ok().body(usuario);
 		}
     }
 
-    @Transactional
     @PostMapping
-    public ResponseEntity<String> addOne(@RequestBody Usuario usuario) {
-//        if (filme.getTitulo() == null){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Filme invalido");
-//        } else {
-//
-//            this.repository.save(filme);
-//
-//            return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
-//        }
+    public ResponseEntity<String> addOne(@RequestBody UsuarioDTO usuarioDTO) {
+		Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.nome(), usuarioDTO.email());
 
-        return ResponseEntity.ok().body("");
+		this.repository.save(usuario);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario adicionado com sucesso!");
    }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long idTitulo, @RequestBody Usuario usuario) {
-//        Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
-//
-//        if (filmeDB != null){
-//            filmeDB.setTitulo(filme.getTitulo());
-//            filmeDB.setAutor(filme.getAutor());
-//            filmeDB.setGenero(filme.getGenero());
-//            filmeDB.setDataLancamento(filme.getDataLancamento());
-//            filmeDB.setSinopse(filme.getSinopse());
-//
-//            this.repository.save(filmeDB);
-//            return ResponseEntity.status(HttpStatus.OK).body("Filme alterado com sucesso!");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
-//        }
+    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        Usuario usuario = this.repository.findById(id).orElse(null);
 
-        return ResponseEntity.ok().body("");
+        if (usuario != null) {
+            usuario.setNome(usuarioDTO.nome());
+			usuario.setEmail(usuarioDTO.email());
+
+            this.repository.save(usuario);
+
+            return ResponseEntity.status(HttpStatus.OK).body("Usuario alterado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
+        }
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long idTitulo) {
-//        Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
-//
-//        if (filmeDB != null){
-//            this.repository.delete(filmeDB);
-//            return ResponseEntity.status(HttpStatus.OK).body("Filme deletado com sucesso!");
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
-//        }
-
-        return ResponseEntity.ok().body("");
+    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
+    	Usuario usuario = this.repository.findById(id).orElse(null);
+		if (usuario != null){
+	        this.repository.delete(usuario);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
+        }
     }
 
 }
