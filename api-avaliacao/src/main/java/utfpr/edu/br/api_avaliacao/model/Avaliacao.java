@@ -23,4 +23,7 @@ public class Avaliacao {
     String comentario;
     Integer nota;
 
+	Long filme;
+	Long usuario;
+
 }
