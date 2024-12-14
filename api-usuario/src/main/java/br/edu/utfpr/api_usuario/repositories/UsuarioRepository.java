@@ -3,6 +3,4 @@ package br.edu.utfpr.api_usuario.repositories;
 import br.edu.utfpr.api_usuario.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {}
