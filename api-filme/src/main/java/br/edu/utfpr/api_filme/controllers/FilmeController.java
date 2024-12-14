@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/filmes")
-
 public class FilmeController {
 
     private FilmeRepository repository;
@@ -21,7 +20,6 @@ public class FilmeController {
     public FilmeController(FilmeRepository repository) {
         this.repository = repository;
     }
-
 
     // Endpoinst
 
@@ -56,8 +54,6 @@ public class FilmeController {
         }
    }
 
-
-
     //Alterar um filme
     @PutMapping("/{id}")
     public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long idTitulo, @RequestBody Filme filme) {
@@ -76,6 +72,7 @@ public class FilmeController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
         }
     }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long idTitulo) {
         Filme filmeDB = this.repository.findById(idTitulo).orElse(null);
@@ -96,6 +93,5 @@ public class FilmeController {
         }
         return ResponseEntity.ok(lista);
     }
-
 
 }
