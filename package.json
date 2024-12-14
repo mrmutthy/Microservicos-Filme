@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@orangeopensource/hurl": "^6.0.0"
+  }
+}
