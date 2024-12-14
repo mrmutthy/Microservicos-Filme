@@ -1,6 +1,7 @@
 /.idea/
 /api-avaliacao/.idea/
 /api-filme/.idea/
+/api-gateway/.idea/
 /api-usuario/.idea/
 
 /api-gateway/target/
