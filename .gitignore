@@ -2,5 +2,6 @@
 /api-usuario/target/
 
 /api-avaliacao/avaliacao_db.mv.db
+/api-filme/filme_db.mv.db
 /api-usuario/usuario_db.mv.db
 
