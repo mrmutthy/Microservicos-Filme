@@ -27,7 +27,7 @@ public class AvaliacaoController {
 
 	@GetMapping
 	public ResponseEntity<List<AvaliacaoDTO>> findAll() {
-		List<AvaliacaoDTO> lista = this.repository.findAll().stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L)).toList();
+		List<AvaliacaoDTO> lista = this.repository.findAll().stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), avaliacao.getFilme(), avaliacao.getUsuario())).toList();
 
 		return ResponseEntity.ok().body(lista);
 	}
@@ -39,7 +39,7 @@ public class AvaliacaoController {
 		if (avaliacao == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
-			return ResponseEntity.status(HttpStatus.OK).body(new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L));
+			return ResponseEntity.status(HttpStatus.OK).body(new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), avaliacao.getFilme(), avaliacao.getUsuario()));
 		}
 	}
 
@@ -57,7 +57,7 @@ public class AvaliacaoController {
 
 		*/
 
-		Avaliacao avaliacao = new Avaliacao(avaliacaoDTO.id(), avaliacaoDTO.titulo(), avaliacaoDTO.comentario(), avaliacaoDTO.nota(), 0L, 0L);
+		Avaliacao avaliacao = new Avaliacao(avaliacaoDTO.id(), avaliacaoDTO.titulo(), avaliacaoDTO.comentario(), avaliacaoDTO.nota(), avaliacaoDTO.filme(), avaliacaoDTO.usuario());
 
 		this.repository.save(avaliacao);
 
@@ -102,7 +102,7 @@ public class AvaliacaoController {
 			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 		}
 
-		return ResponseEntity.ok(lista.stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), 0L, 0L)).toList());
+		return ResponseEntity.ok(lista.stream().map(avaliacao -> new AvaliacaoDTO(avaliacao.getId(), avaliacao.getTitulo(), avaliacao.getComentario(), avaliacao.getNota(), avaliacao.getFilme(), avaliacao.getUsuario())).toList());
 	}
 
 	@GetMapping("/media/{titulo}")
