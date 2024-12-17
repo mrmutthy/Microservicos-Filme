@@ -49,6 +49,15 @@ Acessados por um gateway e de persistencia em um banco de dados Postgres.
 
 - **Funcionalidades a serem implementadas...**
 
+## Requisitos
+
+Antes de iniciar a compilação e execução, certifique-se de ter:
+
+1. **Java JDK 17** ou superior instalado. 
+   - Verifique a instalação executando `java -version` no terminal.
+2. **Maven** instalado (para gestão de dependências e build).
+   - Verifique a instalação executando `mvn -version` no terminal.
+
 ## Observações:
 
 - Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
