@@ -1,0 +1,25 @@
+services:
+  api_gateway:
+    build: api-gateway
+    ports:
+      - 8080:8080
+
+  api_avaliacao:
+    build: api-avaliacao
+    ports:
+      - 8081:8081
+
+  api_filme:
+    build: api-filme
+    ports:
+      - 8082:8082
+
+  api_usuario:
+    build: api-usuario
+    ports:
+      - 8083:8083
+
+  api_recomendacao:
+    build: api-recomendacao
+    ports:
+      - 8084:8084
