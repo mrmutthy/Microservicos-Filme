@@ -43,7 +43,9 @@ Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
 
 **Api-Recomendacao:**
 
-- **Funcionalidades a serem implementadas...**
+- Obter recomendações de filmes.
+- Filtrar recomendações por nota mínima.
+- Integrar avaliações e filmes.
 
 **Api-Validacao:**
 
