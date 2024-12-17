@@ -13,38 +13,38 @@ import java.util.List;
 @RequestMapping("/filmes")
 public class FilmeController {
 
-    private FilmeRepository repository;
+	private FilmeRepository repository;
 
-    // Adicionar construtor com parâmetro FilmeRepository
-    // Spring injetará uma instância repository
-    public FilmeController(FilmeRepository repository) {
-        this.repository = repository;
-    }
+	// Adicionar construtor com parâmetro FilmeRepository
+	// Spring injetará uma instância repository
+	public FilmeController(FilmeRepository repository) {
+		this.repository = repository;
+	}
 
-    // Endpoinst
+	// Endpoinst
 
-    //pegar todos
-    @GetMapping
-    public ResponseEntity<List<Filme>> getAll() {
-        return ResponseEntity.ok(this.repository.findAll());
-    }
+	//pegar todos
+	@GetMapping
+	public ResponseEntity<List<Filme>> getAll() {
+		return ResponseEntity.ok(this.repository.findAll());
+	}
 
-    //pegar um
-    @GetMapping("/{id}")
-    public ResponseEntity<FilmeDTO> getById(@PathVariable(name = "id") Long id) {
-        Filme filme = this.repository.findById(id).orElse(null);
+	//pegar um
+	@GetMapping("/{id}")
+	public ResponseEntity<FilmeDTO> getById(@PathVariable(name = "id") Long id) {
+		Filme filme = this.repository.findById(id).orElse(null);
 
-        if (filme == null) {
+		if (filme == null) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		} else {
 			FilmeDTO filmeDTO = new FilmeDTO(filme.getId(), filme.getTitulo(), filme.getAutor(), filme.getGenero(), filme.getDataLancamento(), filme.getSinopse());
 			return ResponseEntity.status(HttpStatus.OK).body(filmeDTO);
 		}
-    }
+	}
 
-    //adicionar filme
-    @PostMapping
-    public ResponseEntity<String> addOne(@RequestBody FilmeDTO filmeDTO) {
+	//adicionar filme
+	@PostMapping
+	public ResponseEntity<String> addOne(@RequestBody FilmeDTO filmeDTO) {
 		if (filmeDTO.titulo() == null || filmeDTO.titulo().isEmpty()
 			|| filmeDTO.genero() == null || filmeDTO.genero().isEmpty()
 			|| filmeDTO.autor() == null || filmeDTO.autor().isEmpty()
@@ -63,53 +63,53 @@ public class FilmeController {
 
 		this.repository.save(filme);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
-   }
+		return ResponseEntity.status(HttpStatus.CREATED).body("Filme adicionado com sucesso!");
+	}
 
-    //Alterar um filme
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody FilmeDTO filmeDTO) {
-        Filme filmeDB = this.repository.findById(id).orElse(null);
+	//Alterar um filme
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody FilmeDTO filmeDTO) {
+		Filme filmeDB = this.repository.findById(id).orElse(null);
 
-        if (filmeDB != null) {
-            filmeDB.setTitulo(filmeDTO.titulo());
-            filmeDB.setAutor(filmeDTO.autor());
-            filmeDB.setGenero(filmeDTO.genero());
-            filmeDB.setDataLancamento(filmeDTO.lancamento());
-            filmeDB.setSinopse(filmeDTO.sinopse());
+		if (filmeDB != null) {
+			filmeDB.setTitulo(filmeDTO.titulo());
+			filmeDB.setAutor(filmeDTO.autor());
+			filmeDB.setGenero(filmeDTO.genero());
+			filmeDB.setDataLancamento(filmeDTO.lancamento());
+			filmeDB.setSinopse(filmeDTO.sinopse());
 
-            this.repository.save(filmeDB);
+			this.repository.save(filmeDB);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Filme alterado com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
-        }
-    }
+			return ResponseEntity.status(HttpStatus.OK).body("Filme alterado com sucesso!");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
+		}
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
-        Filme filme = this.repository.findById(id).orElse(null);
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
+		Filme filme = this.repository.findById(id).orElse(null);
 
-        if (filme != null){
-            this.repository.delete(filme);
+		if (filme != null) {
+			this.repository.delete(filme);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Filme deletado com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
-        }
-    }
+			return ResponseEntity.status(HttpStatus.OK).body("Filme deletado com sucesso!");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Filme nao encontrado");
+		}
+	}
 
-    @GetMapping("/genero/{genero}")
-    public ResponseEntity<List<FilmeDTO>> getByGenero(@PathVariable("genero") String genero){
-        List<Filme> lista = this.repository.findByGenero(genero);
+	@GetMapping("/genero/{genero}")
+	public ResponseEntity<List<FilmeDTO>> getByGenero(@PathVariable("genero") String genero) {
+		List<Filme> lista = this.repository.findByGenero(genero);
 
-		if (lista.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
+		if (lista.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
 
 		List<FilmeDTO> listaDTO = lista.stream().map(filme -> new FilmeDTO(filme.getId(), filme.getTitulo(), filme.getAutor(), filme.getGenero(), filme.getDataLancamento(), filme.getSinopse())).toList();
 
 		return ResponseEntity.ok(listaDTO);
-    }
+	}
 
 }
