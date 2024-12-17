@@ -10,7 +10,7 @@ Ele conta com 5 CRUDs, sendo eles:
 - Api-Validacao
 - Api-Usuario
 
-Acessados por um gateway e de persistencia em um banco de dados Postgres.
+Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
 
 **Para rodar o projeto, você precisa ter em sua máquina uma versão 17 ou superior do Java.**
 
@@ -48,6 +48,10 @@ Acessados por um gateway e de persistencia em um banco de dados Postgres.
 **Api-Validacao:**
 
 - **Funcionalidades a serem implementadas...**
+
+**PostgreSQL:**
+
+- **Ainda não está sendo utilizado o PostgreSQL para a persistência. Nessa fase inicial foi optado por utilizar o H2 em memória.**
 
 ## Requisitos
 
