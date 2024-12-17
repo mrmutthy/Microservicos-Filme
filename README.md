@@ -58,6 +58,60 @@ Antes de iniciar a compilação e execução, certifique-se de ter:
 2. **Maven** instalado (para gestão de dependências e build).
    - Verifique a instalação executando `mvn -version` no terminal.
 
+## Compilação do Projeto
+
+Cada microsserviço está em um módulo separado. Para compilar o projeto inteiro, siga os passos:
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/mrmutthy/Microservicos-Filme.git
+   cd Microservicos-Filme
+   ```
+
+2. Compile o projeto usando o Maven:
+   ```bash
+   mvn clean install
+   ```
+   Isso gerará os arquivos **JAR** na pasta `target/` de cada microsserviço.
+
+## Execução dos Microsserviços
+
+Para executar os microsserviços individualmente, navegue até o diretório de cada um e execute o JAR correspondente:
+
+### Exemplo: Executando a Api-Filmes
+```bash
+cd api-filmes/target
+java -jar api-filmes.jar
+```
+
+### Executando os demais microsserviços
+Repita o mesmo comando para os outros microsserviços:
+
+```bash
+cd ../api-avaliacao/target
+java -jar api-avaliacao.jar
+
+cd ../api-usuario/target
+java -jar api-usuario.jar
+
+cd ../api-recomendacao/target
+java -jar api-recomendacao.jar
+
+cd ../api-validacao/target
+java -jar api-validacao.jar
+```
+
+## Gateway
+
+O **gateway** é responsável por unificar as rotas de acesso aos microsserviços. Para executá-lo:
+
+```bash
+cd api-gateway/target
+java -jar api-gateway.jar
+```
+
+Por padrão, o gateway estará acessível em **http://localhost:8080**.
+
 ## Observações:
 
 - Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
