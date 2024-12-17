@@ -112,6 +112,27 @@ java -jar api-gateway.jar
 
 Por padrão, o gateway estará acessível em **http://localhost:8080**.
 
+## Testando o Projeto
+
+Os testes são realizados utilizando **hurl**, e os arquivos de teste estão localizados na pasta `hurl`. 
+
+### Executando os Testes
+
+1. Certifique-se de que o **hurl** está instalado em sua máquina.
+   - Para instalação, consulte a documentação oficial: [https://hurl.dev](https://hurl.dev)
+
+2. Execute os testes utilizando o seguinte comando:
+   ```bash
+   hurl hurl
+   ```
+   
+   Exemplo:
+   ```bash
+   hurl hurl/01_post_filmes.hurl
+   ```
+
+3. Os arquivos de teste validam endpoints de cada microsserviço conforme suas funcionalidades descritas.
+
 ## Observações:
 
 - Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
