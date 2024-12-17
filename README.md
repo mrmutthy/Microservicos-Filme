@@ -1,6 +1,6 @@
 # Microserviços-Filme
 
-Este projeto tem como objetivo criar microsserviços para um trabalho de TE (Topicos Especiais).
+Este projeto tem como objetivo criar microsserviços para um trabalho de TE29S (Tópicos Especiais em Ciência da Computação).
 
 Ele conta com 5 CRUDs, sendo eles:
 
