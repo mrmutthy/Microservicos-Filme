@@ -11,6 +11,10 @@
 /api-gateway/target/
 /api-usuario/target/
 
+/avaliacao_db.mv.db
+/filme_db.mv.db
+/usuario_db.mv.db
+
 /api-avaliacao/avaliacao_db.mv.db
 /api-filme/filme_db.mv.db
 /api-usuario/usuario_db.mv.db
