@@ -29,9 +29,17 @@ Acessados por um gateway e de persistencia em um banco de dados Postgres.
 - Buscar todas as avaliações
 - Buscar as avaliações de um filme específico
 - Ver a média de notas de um filme avaliado
+- Buscar as avaliações de um usuário específico
 - Fazer uma avaliação
 - Editar uma avaliação
 - Excluir uma avaliação
+
+**Api-Usuario:**
+
+- Buscar todos os usuários
+- Adicionar usuário
+- Alterar usuário
+- Deletar usuário
 
 **Api-Recomendacao:**
 
@@ -40,11 +48,6 @@ Acessados por um gateway e de persistencia em um banco de dados Postgres.
 **Api-Validacao:**
 
 - **Funcionalidades a serem implementadas...**
-
-**Api-Usuario:**
-
-- **Funcionalidades a serem implementadas...**
-
 
 ## Observações:
 
