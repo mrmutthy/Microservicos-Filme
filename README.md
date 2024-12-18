@@ -7,7 +7,7 @@ Ele conta com 5 CRUDs, sendo eles:
 - Api-Filmes
 - Api-Avaliacao
 - Api-Recomendacao
-- Api-Validacao
+- Api-Autenticacao
 - Api-Usuario
 
 Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
@@ -47,13 +47,13 @@ Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
 - Filtrar recomendações por nota mínima.
 - Integrar avaliações e filmes.
 
-**Api-Validacao:**
+**Api-Autenticacao:**
 
 - **Funcionalidades a serem implementadas...**
 
 **PostgreSQL:**
 
-- **Ainda não está sendo utilizado o PostgreSQL para a persistência. Nessa fase inicial foi optado por utilizar o H2 em memória.**
+- **Ainda não está sendo utilizado o PostgreSQL para a persistência. Nessa fase inicial foi optado por utilizar o H2.**
 
 ## Requisitos
 
@@ -102,9 +102,6 @@ java -jar api-usuario.jar
 
 cd ../api-recomendacao/target
 java -jar api-recomendacao.jar
-
-cd ../api-validacao/target
-java -jar api-validacao.jar
 ```
 
 ## Gateway
