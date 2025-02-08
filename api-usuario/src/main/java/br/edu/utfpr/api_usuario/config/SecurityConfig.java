@@ -38,6 +38,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth
 			.requestMatchers("/h2-console/**").permitAll()
 			.requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+			.requestMatchers("/login").permitAll()
 			.anyRequest().authenticated()
 		);
 
