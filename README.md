@@ -59,7 +59,7 @@ Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
 
 Antes de iniciar a compilação e execução, certifique-se de ter:
 
-1. **Java JDK 17** ou superior instalado. 
+1. **Java JDK 17** ou superior instalado.
    - Verifique a instalação executando `java -version` no terminal.
 2. **Maven** instalado (para gestão de dependências e build).
    - Verifique a instalação executando `mvn -version` no terminal.
@@ -117,7 +117,7 @@ Por padrão, o gateway estará acessível em **http://localhost:8080**.
 
 ## Testando o Projeto
 
-Os testes são realizados utilizando **hurl**, e os arquivos de teste estão localizados na pasta `hurl`. 
+Os testes são realizados utilizando **hurl**, e os arquivos de teste estão localizados na pasta `hurl`.
 
 ### Executando os Testes
 
@@ -128,7 +128,7 @@ Os testes são realizados utilizando **hurl**, e os arquivos de teste estão loc
    ```bash
    hurl hurl
    ```
-   
+
    Exemplo:
    ```bash
    hurl hurl/01_post_filmes.hurl
@@ -140,4 +140,4 @@ Os testes são realizados utilizando **hurl**, e os arquivos de teste estão loc
 
 - Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
 
-  <img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/imagem.jpeg" alt="Logo do projeto">
+  <img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/diag.png" alt="Diagrama do Projeto">
