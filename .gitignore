@@ -20,3 +20,4 @@
 /api-filme/filme_db.mv.db
 /api-usuario/usuario_db.mv.db
 
+/**/*.trace.db
