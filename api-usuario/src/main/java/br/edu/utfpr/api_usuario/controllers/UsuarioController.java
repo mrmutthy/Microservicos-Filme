@@ -6,6 +6,7 @@ import br.edu.utfpr.api_usuario.repositories.UsuarioRepository;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,19 +15,21 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private UsuarioRepository repository;
+	private UsuarioRepository repository;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UsuarioController(UsuarioRepository repository) {
-        this.repository = repository;
-    }
+	public UsuarioController(UsuarioRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.repository = repository;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
 
-    @GetMapping
-    public ResponseEntity<List<Usuario>> getAll() {
-        return ResponseEntity.ok(this.repository.findAll());
-    }
+	@GetMapping
+	public ResponseEntity<List<Usuario>> getAll() {
+		return ResponseEntity.ok(this.repository.findAll());
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuario> getById(@PathVariable(name = "id") Long id) {
+	@GetMapping("/{id}")
+	public ResponseEntity<Usuario> getById(@PathVariable(name = "id") Long id) {
 		Usuario usuario = this.repository.findById(id).orElse(null);
 
 		if (usuario == null) {
@@ -34,42 +37,44 @@ public class UsuarioController {
 		} else {
 			return ResponseEntity.ok().body(usuario);
 		}
-    }
+	}
 
-    @PostMapping
-    public ResponseEntity<String> addOne(@RequestBody UsuarioDTO usuarioDTO) {
-		Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.nome(), usuarioDTO.email());
+	@PostMapping
+	public ResponseEntity<String> addOne(@RequestBody UsuarioDTO usuarioDTO) {
+		Usuario usuario = new Usuario(usuarioDTO.id(), usuarioDTO.nome(), usuarioDTO.email(),
+			this.bCryptPasswordEncoder.encode(usuarioDTO.senha())
+		);
 
 		this.repository.save(usuario);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Usuario adicionado com sucesso!");
-   }
+		return ResponseEntity.status(HttpStatus.CREATED).body("Usuario adicionado com sucesso!");
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody UsuarioDTO usuarioDTO) {
-        Usuario usuario = this.repository.findById(id).orElse(null);
+	@PutMapping("/{id}")
+	public ResponseEntity<String> updateOne(@PathVariable(name = "id") Long id, @RequestBody UsuarioDTO usuarioDTO) {
+		Usuario usuario = this.repository.findById(id).orElse(null);
 
-        if (usuario != null) {
-            usuario.setNome(usuarioDTO.nome());
+		if (usuario != null) {
+			usuario.setNome(usuarioDTO.nome());
 			usuario.setEmail(usuarioDTO.email());
 
-            this.repository.save(usuario);
+			this.repository.save(usuario);
 
-            return ResponseEntity.status(HttpStatus.OK).body("Usuario alterado com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
-        }
-    }
+			return ResponseEntity.status(HttpStatus.OK).body("Usuario alterado com sucesso!");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
+		}
+	}
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
-    	Usuario usuario = this.repository.findById(id).orElse(null);
-		if (usuario != null){
-	        this.repository.delete(usuario);
-            return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
-        }
-    }
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<String> deleteOne(@PathVariable(name = "id") Long id) {
+		Usuario usuario = this.repository.findById(id).orElse(null);
+		if (usuario != null) {
+			this.repository.delete(usuario);
+			return ResponseEntity.status(HttpStatus.OK).body("Usuario deletado com sucesso!");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario nao encontrado");
+		}
+	}
 
 }
