@@ -1,3 +1,3 @@
 package br.edu.utfpr.api_usuario.dto;
 
-public record UsuarioDTO(Long id, String nome, String email) {}
+public record UsuarioDTO(Long id, String nome, String email, String senha) {}
