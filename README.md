@@ -134,7 +134,3 @@ Os testes são realizados utilizando **hurl**, e os arquivos de teste estão loc
    ```
 
 3. Os arquivos de teste validam endpoints de cada microsserviço conforme suas funcionalidades descritas.
-
-## Observações:
-
-
