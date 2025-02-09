@@ -11,6 +11,10 @@ Ele conta com 4 CRUDs, sendo eles:
 
 Acessados por um gateway e de persistencia em um banco de dados H2.
 
+A estrutura em alto nível do projeto está descrita no diagrama abaixo.
+
+<img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/diag.png" alt="Diagrama do Projeto">
+
 **Para rodar o projeto, você precisa ter em sua máquina uma versão 17 ou superior do Java.**
 
 ### Funcionalidades:
@@ -134,4 +138,3 @@ Os testes são realizados utilizando **hurl**, e os arquivos de teste estão loc
 ## Observações:
 
 
-  <img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/diag.png" alt="Diagrama do Projeto">
