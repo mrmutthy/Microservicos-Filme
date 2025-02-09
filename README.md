@@ -2,7 +2,7 @@
 
 Este projeto tem como objetivo criar microsserviços para um trabalho de TE29S (Tópicos Especiais em Ciência da Computação).
 
-Ele conta com 5 CRUDs, sendo eles:
+Ele conta com 4 CRUDs, sendo eles:
 
 - Api-Filmes
 - Api-Avaliacao
