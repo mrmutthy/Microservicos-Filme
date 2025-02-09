@@ -7,10 +7,9 @@ Ele conta com 5 CRUDs, sendo eles:
 - Api-Filmes
 - Api-Avaliacao
 - Api-Recomendacao
-- Api-Autenticacao
 - Api-Usuario
 
-Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
+Acessados por um gateway e de persistencia em um banco de dados H2.
 
 **Para rodar o projeto, você precisa ter em sua máquina uma versão 17 ou superior do Java.**
 
@@ -47,13 +46,9 @@ Acessados por um gateway e de persistencia em um banco de dados PostgreSQL.
 - Filtrar recomendações por nota mínima.
 - Integrar avaliações e filmes.
 
-**Api-Autenticacao:**
+## Persistencia
 
-- **Funcionalidades a serem implementadas...**
-
-**PostgreSQL:**
-
-- **Ainda não está sendo utilizado o PostgreSQL para a persistência. Nessa fase inicial foi optado por utilizar o H2.**
+- Utilização do banco H2 para a persistencia dos dados das API's
 
 ## Requisitos
 
@@ -138,6 +133,5 @@ Os testes são realizados utilizando **hurl**, e os arquivos de teste estão loc
 
 ## Observações:
 
-- Este README ainda está em construção e será atualizado com mais informações e detalhes sobre o projeto.
 
   <img src="https://github.com/mrmutthy/Microservicos-Filme/blob/main/diag.png" alt="Diagrama do Projeto">
