@@ -14,10 +14,12 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Instant;
 
 @RestController
+@RequestMapping("/usuarios")
 public class TokenController {
 
 	@Autowired
@@ -33,7 +35,7 @@ public class TokenController {
 	public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
 		Usuario usuario = userRepository.findByEmail(loginRequest.email());
 
-		if (usuario == null || !bCryptPasswordEncoder.matches(loginRequest.password(), usuario.getSenha())) {
+		if (usuario == null || !bCryptPasswordEncoder.matches(loginRequest.senha(), usuario.getSenha())) {
 			throw new BadCredentialsException("email ou senha invalidos");
 		}
 
