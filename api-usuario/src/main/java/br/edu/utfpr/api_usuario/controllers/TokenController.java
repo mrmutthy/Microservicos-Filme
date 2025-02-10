@@ -60,7 +60,7 @@ public class TokenController {
     public ResponseEntity<LoginResponse> login(@org.springframework.web.bind.annotation.RequestBody LoginRequest loginRequest) {
         Usuario usuario = userRepository.findByEmail(loginRequest.email());
 
-        if (usuario == null || !bCryptPasswordEncoder.matches(loginRequest.password(), usuario.getSenha())) {
+        if (usuario == null || !bCryptPasswordEncoder.matches(loginRequest.senha(), usuario.getSenha())) {
             throw new BadCredentialsException("email ou senha invalidos");
         }
 
