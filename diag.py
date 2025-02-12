@@ -1,14 +1,17 @@
 from diagrams import Diagram, Cluster
 from diagrams.onprem.compute import Server
 from diagrams.onprem.client import Client
-# from diagrams.onprem.database import Postgresql
 from diagrams.generic.storage import Storage
 from diagrams.programming.framework import Spring
 
 with Diagram("Avaliação e Recomendação de Filmes", show=False, direction="LR") as diag:
   client = Client("Cliente")
   gateway = Server("Gateway")
-  db = Storage("Banco de Dados") # Postgresql("Banco de Dados")
+
+  with Cluster("Banco de Dados"):
+    db_u = Storage("Usuários")
+    db_f = Storage("Filmes")
+    db_a = Storage("Avaliações")
 
   with Cluster("Micro Serviços"):
     auth = Spring("Autenticação")
@@ -25,9 +28,9 @@ with Diagram("Avaliação e Recomendação de Filmes", show=False, direction="LR
   gateway >> review
   gateway >> recs
 
-  user >> db
-  film >> db
-  review >> db
+  user >> db_u
+  film >> db_f
+  review >> db_a
 
   auth >> user
 
